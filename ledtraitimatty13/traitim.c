@@ -28,9 +28,9 @@ void sang(char loai);
 void nhapNhayTatCa();
 void chayMotCaiMotXepHinh(char direction);
 void huychDen(char direction, char coChayLen);
-
 void addOne();
-void sang(char loai);
+
+
 void addOne() {
      PORTB = 7;
      PORTB = 1;
@@ -59,103 +59,6 @@ void addZeroMulti(char time) {
 
 
 
-
-//
-//  Hien thi 8 den tu mang truyen vao  ..can delay
-char den[8] = {0,0,0,0, 0,0,0,0};
-void hienThiDen() {
-    char i = 0;
-    for (i=0; i<9; i++) {
-        if (den[i] == 1) {
-            addOne();
-        } else {
-            addZero();
-        }
-    }
-}
-
-void chayVaoGiuaXepHinh() {
-    char i = 0;
-    for (;i<8;i++) {  
-        char i2 = 0;
-        for (i2 = 0;i2<4-i;i2++) {
-            if (i2>0) {
-                den[i2-1] = 0;
-                den[7-i2+1]= 0;
-            }
-            den[7-i2] = 1;
-            den[i2] = 1;
-            hienThiDen();
-            delay_ms(250);
-        }
-        delay_ms(250);
-    } 
-}
-
-void chayThatNhanhTuCuHuynh(char viTriHuych, char direction) {
-    char i = viTriHuych;
-    for (; i<8; i ++) {
-        if (i>0) {
-            if (direction == 1) {
-                den[i-1] = 0;
-            } else {
-                den[7 - (i-1)] = 0;                    
-            }
-                
-        }
-        if (direction == 1) {
-            den[i] = 1;
-        } else {
-            den[7 - i] = 1;
-        } 
-        hienThiDen();
-        delay_ms(250);
-    }              
-    
-    for (i = 7; i >= viTriHuych + 1; i --) {
-        if (i<7) {
-            if (direction == 1) {
-                den[i+1] = 0;
-            } else {
-                den[7 - (i+1)] = 0;                    
-            }
-                
-        }
-        if (direction == 1) {
-            den[i] = 1;
-        } else {
-            den[7 - i] = 1;
-        } 
-        hienThiDen();
-        delay_ms(400);
-    }
-}
-// không dùng
-void chayVaoGiua(char time) {
-    while (--time) {
-       char i = 0;
-       for (;i<4;i++) {
-            if (i>0) {
-                den[i-1] = 0;
-                den[7-i+1]= 0;
-            }
-            den[7-i] = 1;
-            den[i] = 1;
-            hienThiDen();
-            delay_ms(250);
-            if (i == 3) {
-                den[3] = 0;
-                den[4] = 0;
-                hienThiDen();
-                delay_ms(250);
-            }
-        }
-    }
-}
-
-
-void sang(char loai);
-
 void main(void)
 {
     char i = 0;
@@ -167,8 +70,6 @@ CLKPR=0x80;CLKPR=0x00;
 PORTB=0x30;DDRB=0x07;TCCR0A=0x00;TCCR0B=0x00;TCNT0=0x00;OCR0A=0x00;OCR0B=0x00;GIMSK=0x00;MCUCR=0x00;
 TIMSK0=0x00;ACSR=0x80;ADCSRB=0x00;DIDR0=0x00;ADCSRA=0x00;
  
-
-
 
 while (1)
 {
@@ -226,19 +127,9 @@ void sang(char loai) {
         i++;
     }
 }
-// so 4 : ko dùng
-void nhapNhayTatCa() {
-    char i = 0;
-    while(i<8){
-        addOneMulti(8);
-        delay_ms(250);
-        addZeroMulti(8);
-        delay_ms(250);    
-        ++i;
-    }
-}
 
-// so 5
+
+// so 2
 void chayMotCaiMotXepHinh(char direction) {
     char i = 0;
     for (;i<8;++i) {  
@@ -265,7 +156,7 @@ void chayMotCaiMotXepHinh(char direction) {
     }    
 }
 
-// so 6
+// so 3
 
 void huychDen(char direction, char coChayLen) {
     char i = 7;    
@@ -293,7 +184,111 @@ void huychDen(char direction, char coChayLen) {
         //delay_ms(250);
     } 
 }
-//srand((unsigned) time(&t)); 
-///* in 5 so ngau nhien trong day tu 0 toi 49 */ 
-//for( i = 0 ; i < n ; i++ ) 
-//{ printf("%d\n", rand() % 50); } return(0); }
+
+// so 4
+//  Hien thi 8 den tu mang truyen vao  ..can delay
+char den[8] = {0,0,0,0, 0,0,0,0};
+void hienThiDen() {
+    char i = 0;
+    for (i=0; i<9; i++) {
+        if (den[i] == 1) {
+            addOne();
+        } else {
+            addZero();
+        }
+    }
+}
+
+//so 5
+void chayVaoGiuaXepHinh() {
+    char i = 0;
+    for (;i<8;i++) {  
+        char i2 = 0;
+        for (i2 = 0;i2<4-i;i2++) {
+            if (i2>0) {
+                den[i2-1] = 0;
+                den[7-i2+1]= 0;
+            }
+            den[7-i2] = 1;
+            den[i2] = 1;
+            hienThiDen();
+            delay_ms(250);
+        }
+        delay_ms(250);
+    } 
+}
+
+//so 6
+void chayThatNhanhTuCuHuynh(char viTriHuych, char direction) {
+    char i = viTriHuych;
+    for (; i<8; i ++) {
+        if (i>0) {
+            if (direction == 1) {
+                den[i-1] = 0;
+            } else {
+                den[7 - (i-1)] = 0;                    
+            }
+                
+        }
+        if (direction == 1) {
+            den[i] = 1;
+        } else {
+            den[7 - i] = 1;
+        } 
+        hienThiDen();
+        delay_ms(250);
+    }              
+    
+    for (i = 7; i >= viTriHuych + 1; i --) {
+        if (i<7) {
+            if (direction == 1) {
+                den[i+1] = 0;
+            } else {
+                den[7 - (i+1)] = 0;                    
+            }
+                
+        }
+        if (direction == 1) {
+            den[i] = 1;
+        } else {
+            den[7 - i] = 1;
+        } 
+        hienThiDen();
+        delay_ms(400);
+    }
+}
+// so 7 không dùng do không du bo nho
+void chayVaoGiua(char time) {
+    while (--time) {
+       char i = 0;
+       for (;i<4;i++) {
+            if (i>0) {
+                den[i-1] = 0;
+                den[7-i+1]= 0;
+            }
+            den[7-i] = 1;
+            den[i] = 1;
+            hienThiDen();
+            delay_ms(250);
+            if (i == 3) {
+                den[3] = 0;
+                den[4] = 0;
+                hienThiDen();
+                delay_ms(250);
+            }
+        }
+    }
+}
+
+
+// so 8 : ko dùng do không du bo nho
+void nhapNhayTatCa() {
+    char i = 0;
+    while(i<8){
+        addOneMulti(8);
+        delay_ms(250);
+        addZeroMulti(8);
+        delay_ms(250);    
+        ++i;
+    }
+}
