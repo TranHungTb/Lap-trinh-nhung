@@ -2,7 +2,7 @@
 This program was created by the
 CodeWizardAVR V3.12 Advanced
 Automatic Program Generator
-© Copyright 1998-2014 Pavel Haiduc, HP InfoTech s.r.l.
+Â© Copyright 1998-2014 Pavel Haiduc, HP InfoTech s.r.l.
 http://www.hpinfotech.com
 
 Project : 
@@ -35,7 +35,7 @@ Data Stack size         : 128
 unsigned char maled[16]={0xE1,0xE2,0xE4,0xE8,0xD1,0xD2,0xD4,0xD8,0xB1,0xB2,0xB4,0xB8,0x71,0x72,0x74,0x78};
 
                                           
-unsigned char mtp_quetphim()
+unsigned char quetphim()
 {
             unsigned char r,c;
             PORTA=0x0f;   
@@ -43,7 +43,7 @@ unsigned char mtp_quetphim()
             if((PINA&0x0f)!=0x0f)    // Kiem tra xem co phim bat ky nao duoc bam hay khong?
             {
             delay_us(5);            // Chong nhieu
-            if((PINA&0x0f)!=0x0f)    // Neu dung có phim duoc bam: Bat dau qua trinh quet phim
+            if((PINA&0x0f)!=0x0f)    // Neu dung cÃ³ phim duoc bam: Bat dau qua trinh quet phim
             {
             for(c=1;c<5;c++)      // Quet theo cot
             {
@@ -179,7 +179,7 @@ while (1)
 
 
        unsigned char Key;
-        Key = mtp_quetphim();                // Gan gia tri ky tu tra ve cho bien Key
+        Key = quetphim();                // Gan gia tri ky tu tra ve cho bien Key
         if(Key>0)                                            // Neu phim duoc bam
         {       
          PORTB =   maled[Key-1];   // Cho hien thi gia tri phim bam len LCD
